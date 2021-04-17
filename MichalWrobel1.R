@@ -53,11 +53,29 @@ stworzDataFrame()
 #5 Napisz funkcję , która pobiera sciezke Katalogu, nazweKolumny, jakaFunkcje, DlaIluPlikow i liczy: 
 #mean, median,min,max w zależności od podanej nazwy funkcji w argumencie, z katologu który podaliśmy i z tylu plików ilu podaliśmy dla wybranej nazwy kolumny. 
 #UWAGA: w podanych plikach R pobierając komórki nazwane liczbami R wstawi przed nazwy X. Funkcję przetestuj dla katalogu smogKrakow.zip.  Wykonując obliczenia pomiń brakujące wartości.
-#liczZplikow <- function(sciezka,nazwaKolumny,jakaFunkcja="mean",DlaIluPlikow=1){ 
-  #...
 
-#liczZplikow <- function(sciezka,nazwaKolumny,jakaFunkcja="mean",DlaIluPlikow=1){ 
+#liczZplikow <- function(sciezka, nazwaKolumny ,jakaFunkcja,DlaIluPlikow=1) {
+
+library(plyr)
+
+liczZplikow <- function(sciezka, nazwaKolumny ,jakaFunkcja = "mean",DlaIluPlikow=1) {
   
+  setwd(sciezka)
+  lista <-list.files()[1:DlaIluPlikow]
+
+  dataset <- ldply(lista, read.csv, header=TRUE)
+
+  ready_data = (dataset %>% select(nazwaKolumny)%>%na.omit())
   
+  if (jakaFunkcja == "mean") mean(ready_data)
+  else if (jakaFunkcja == "max" ) max(ready_data)
+  else if (jakaFunkcja == "min") min(ready_data)
+  else if (jakaFunkcja == "median") median(ready_data)
   
+  #View(ready_data)
+  }
+
+liczZplikow ("../smogKrakow", nazwaKolumny='X142_temperature' ,jakaFunkcja='max', DlaIluPlikow=2)
+  
+
 
