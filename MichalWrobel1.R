@@ -76,6 +76,4 @@ liczZplikow <- function(sciezka, nazwaKolumny ,jakaFunkcja = "mean",DlaIluPlikow
   }
 
 liczZplikow ("../smogKrakow", nazwaKolumny='X142_temperature' ,jakaFunkcja='max', DlaIluPlikow=2)
-  
-
 
