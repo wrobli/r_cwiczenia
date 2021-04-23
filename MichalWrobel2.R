@@ -1,6 +1,7 @@
 library(rvest)
 library(xml2)
 library(dplyr)
+library(gtools)
 
 # pobranie Linkow do scrapper-a
 
