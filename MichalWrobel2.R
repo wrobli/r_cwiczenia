@@ -50,6 +50,7 @@ for(w in 1:length(linki_u)){
   }
 }
 
+
 #wyswietlenie wynikow
 View(samochody)
 
