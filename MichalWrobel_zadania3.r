@@ -37,12 +37,15 @@ rankAccountBigDatatoChunk <- function(filename, size, colName, groupName, valueS
     data <- read.table(fileConnection, nrows = size, col.names = columnsNames, fill = TRUE, sep = ',') 
     new_data <- data %>%
     select(colName, valueSort) %>%
-    filter(data[[colName]] == groupName)
-      
-    output <- rbind(output,new_data)
-  }
-    output %>% arrange(desc(!!sym(valueSort))) %>%
+    filter(data[[colName]] == groupName)%>%
+    arrange(desc(!!sym(valueSort)))
     head(num)
+    
+    output <- rbind(output,new_data) %>% 
+    arrange(desc(!!sym(valueSort))) %>%
+    head(num)
+  }
+    return(output)
 }
 rankAccountBigDatatoChunk("konta.csv", 1000, "occupation", "NAUCZYCIEL", "saldo", 5) 
 
